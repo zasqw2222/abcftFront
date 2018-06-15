@@ -20,7 +20,7 @@ module.exports = merge(webpackBaseConfig, {
         main: path.resolve(__dirname, '../src/pack/index.js'),
     },
     output: {
-        path: path.resolve(__dirname, '../build/lib'),
+        path: path.resolve(__dirname, '../lib'),
         publicPath: '/lib/',
         filename: 'pack.js',
         library: 'pack',

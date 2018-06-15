@@ -1,7 +1,8 @@
 {
-  "name": "abc-front",
-  "version": "0.1.0",
-  "private": true,
+  "name": "youPackName",
+  "version": "0.0.1",
+  "private": false,
+  "main": "index.js",
   "dependencies": {
     "antd": "^3.5.2",
     "autoprefixer": "7.1.6",
