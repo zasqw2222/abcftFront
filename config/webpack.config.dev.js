@@ -19,20 +19,20 @@ const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
 
 module.exports = {
-  
+
   devtool: 'cheap-module-source-map',
-  
+
   entry: [
-    
+
     require.resolve('./polyfills'),
-    
+
     require.resolve('react-dev-utils/webpackHotDevClient'),
-    
+
     paths.appIndexJs,
-    
+
   ],
   output: {
-    
+
     pathinfo: true,
     filename: 'static/js/bundle.js',
     chunkFilename: 'static/js/[name].chunk.js',
@@ -63,7 +63,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -111,7 +111,7 @@ module.exports = {
                         '>1%',
                         'last 4 versions',
                         'Firefox ESR',
-                        'not ie < 9', 
+                        'not ie < 9',
                       ],
                       flexbox: 'no-2009',
                     }),
@@ -135,9 +135,15 @@ module.exports = {
             use: [{
               loader: "style-loader" // creates style nodes from JS strings
             }, {
-              loader: "css-loader" // translates CSS into CommonJS
+              loader: "css-loader", // translates CSS into CommonJS
+              options: {
+                sourceMap: true,
+              }
             }, {
-              loader: "sass-loader" // compiles Sass to CSS
+              loader: "sass-loader", // compiles Sass to CSS
+              options: {
+                sourceMap: true,
+              }
             }]
           },
           {

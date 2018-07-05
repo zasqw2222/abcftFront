@@ -1,7 +1,7 @@
 import { observable, action, runInAction } from 'mobx'
 import ask from '../lib/ask'
 import moment from 'moment'
-class DefaultStroe {
+class DefaultStore {
     constructor(rootStore) {
 
         // 这个地方 不需要的时候 可以不用 继承
@@ -41,4 +41,4 @@ class DefaultStroe {
 }
 
 
-export default DefaultStroe
+export default DefaultStore
