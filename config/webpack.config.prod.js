@@ -91,13 +91,47 @@ module.exports = {
             },
           },
           {
+            test: /antd.*\.css$/,
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  // modules: true,
+                  importLoaders: 1,
+                  localIdentName: '[name]__[local]--[hash:base64:5]'
+                },
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9',
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
+              },
+            ]
+          },
+          {
             test: /\.css$/,
+            exclude: /antd.*\.css$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
                   fallback: {
                     loader: require.resolve('style-loader'),
                     options: {
+                      
                       hmr: false,
                     },
                   },
@@ -108,6 +142,7 @@ module.exports = {
                         importLoaders: 1,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
+                        modules: true,
                         localIdentName: '[name]__[local]--[hash:base64:5]'
                       },
                     },
