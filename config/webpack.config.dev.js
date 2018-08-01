@@ -24,7 +24,7 @@ module.exports = {
 
   entry: [
 
-    require.resolve('./polyfills'),
+    require.resolve("babel-polyfill"),
 
     require.resolve('react-dev-utils/webpackHotDevClient'),
 

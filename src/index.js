@@ -5,7 +5,7 @@ import { Provider } from 'mobx-react'
 import { BrowserRouter } from 'react-router-dom'
 import Store from './store'
 import registerServiceWorker from './registerServiceWorker'
-
+import "babel-polyfill"
 const Wrap = (
     <Provider {...new Store()}>
       <BrowserRouter basename="/">
