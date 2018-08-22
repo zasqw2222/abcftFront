@@ -5,7 +5,7 @@ import App from './App'
 import { Provider } from 'mobx-react'
 import { BrowserRouter } from 'react-router-dom'
 import Store from './store'
-import registerServiceWorker from './registerServiceWorker'
+// import registerServiceWorker from './registerServiceWorker'
 
 const Wrap = (
     <Provider {...new Store()}>
@@ -18,4 +18,4 @@ const Wrap = (
     Wrap,
     document.getElementById('root')
   )
-  registerServiceWorker()
+  // registerServiceWorker()

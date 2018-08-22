@@ -33,6 +33,7 @@ import { withRouter } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import Loading from '../../components/Loading'
 import { Button, Alert } from 'antd'
+import styled from 'styled-components'
 
 @withRouter
 @inject('defaultStore')
@@ -58,6 +59,14 @@ class Home extends Component {
     }
     render() {
         let { defaultStore } = this.props
+        const Input = styled.input`
+                padding: 0.5em;
+                margin: 0.5em;
+                color: palevioletred;
+                background: papayawhip;
+                border: none;
+                border-radius: 3px;
+                `
         return (
             <div className="abc-wechat-ProjectName">
                 {defaultStore.time}
@@ -79,7 +88,7 @@ class Home extends Component {
                         }
                     </ul>
                 }
-                
+                <Input />
             </div>
         )
     }
