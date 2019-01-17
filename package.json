@@ -4,7 +4,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "antd": "^3.5.2",
+    "antd": "3.12.3",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
