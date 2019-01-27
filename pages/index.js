@@ -1,4 +1,6 @@
+import React, { Component } from 'react'
 import { Row, Col, Collapse } from 'antd'
+import { withRouter } from 'next/router'
 import Head from 'next/head'
 const Panel = Collapse.Panel
 
@@ -12,23 +14,29 @@ function callback(key) {
   console.log(key);
 }
 
-export default () => (
-  <div>
-    <Head>
-      <title>SSR in Next.js</title>
-    </Head>
-    <Row>
-      <Collapse onChange={callback}>
-        <Panel header="This is panel header 1" key="1">
-          <p>{text}</p>
-        </Panel>
-        <Panel header="This is panel header 2" key="2">
-          <p>{text}</p>
-        </Panel>
-        <Panel header="This is panel header 3" key="3">
-          <p>{text}</p>
-        </Panel>
-      </Collapse>
-    </Row>
-  </div>
-)
+@withRouter
+class IndexPage extends Component {
+  render () {
+    console.log(this.props)
+    return (
+      <div>
+        <Head>
+          <title>SSR in Next.js</title>
+        </Head>
+        <Collapse onChange={callback}>
+          <Panel header="This is panel header 1" key="1">
+            <p>{text}</p>
+          </Panel>
+          <Panel header="This is panel header 2" key="2">
+            <p>{text}</p>
+          </Panel>
+          <Panel header="This is panel header 3" key="3">
+            <p>{text}</p>
+          </Panel>
+        </Collapse>
+      </div>
+    )
+  }
+}
+
+export default IndexPage
