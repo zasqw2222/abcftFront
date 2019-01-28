@@ -5,7 +5,7 @@
   "author": "xiadd <xiadd0102@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start"
   },
@@ -13,6 +13,8 @@
     "@zeit/next-css": "^1.0.1",
     "antd": "^3.13.0",
     "babel-plugin-import": "^1.11.0",
+    "express": "^4.16.4",
+    "lru-cache": "^5.1.1",
     "next": "^7.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
