@@ -3,10 +3,15 @@ import { withRouter } from 'next/router'
 
 @withRouter
 class UserPage extends Component {
+  static getInitialProps({ req }) {
+    return {
+      params: req.params
+    }
+  }
   render() {
-    const { router } = this.props
+    const { router, params } = this.props
     return (
-      <div>user {router.query.id}</div>
+      <div>user {params.id}</div>
     )
   }
 }
