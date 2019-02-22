@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <meta charSet='utf-8' />
         </Head>
-        <body>
+        <body style={{ background: '#f5f5f5', minHeight: '100%' }}>
           <Main />
           <NextScript />
         </body>

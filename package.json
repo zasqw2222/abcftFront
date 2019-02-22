@@ -12,6 +12,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "antd": "^3.13.5",
+    "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "express": "^4.16.4",
     "lru-cache": "^5.1.1",

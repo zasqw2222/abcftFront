@@ -19,10 +19,6 @@ const SERVE_PORT = process.env.SERVE_PORT || 8001
 app.prepare().then(() => {
   const server = express()
 
-  server.get('/user/:id', async (req, res) => {
-    renderAndCache(req, res, '/user', req.query)
-  })
-
   server.get('*', (req, res) => handle(req, res))
 
   server.listen(SERVE_PORT, err => {
