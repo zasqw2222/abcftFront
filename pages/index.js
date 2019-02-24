@@ -18,6 +18,10 @@ const ListItemTitle = styled.div`
   flex: 1;
   a {
     color: #000;
+    text-decoration: none;
+    &:visited {
+      color: gray;
+    }
   }
 `
 
