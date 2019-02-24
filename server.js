@@ -19,6 +19,8 @@ const SERVE_PORT = process.env.SERVE_PORT || 8001
 app.prepare().then(() => {
   const server = express()
 
+  server.get('/', (req, res) => renderAndCache(req, res, '/'))
+
   server.get('*', (req, res) => handle(req, res))
 
   server.listen(SERVE_PORT, err => {
