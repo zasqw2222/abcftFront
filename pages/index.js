@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, Tag } from 'antd'
+import { List, Tag, Spin, Icon } from 'antd'
 import { withRouter } from 'next/router'
 import Head from 'next/head'
 import styled from 'styled-components'
@@ -7,40 +7,78 @@ import { getGroupTopics } from '../services/douban'
 import { groups } from '../constants'
 
 const CheckableTag = Tag.CheckableTag
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 
 const Container = styled.div`
   width: 960px;
-  margin: 40px auto
+  margin: 40px auto;
+`
+
+const ListItemTitle = styled.div`
+  flex: 1;
+  a {
+    color: #000;
+  }
+`
+
+const ListItemContent = styled.div`
+  font-size: .8rem;
+  flex: 1;
+  color: #999;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  margin-top: .2rem;
 `
 
 
 
 const ListItem = ({ item, index }) => {
-  return <List.Item>{index + 1}. {item.title}</List.Item>
+  return <List.Item>
+    <div style={{ width: '900px' }}>
+      <ListItemTitle>
+        <a href={item.alt} target="_blank" rel="noopener noreferrer">{item.title}</a>
+      </ListItemTitle>
+      <ListItemContent>
+        {item.content}
+      </ListItemContent>
+    </div>
+  </List.Item>
 }
 
 @withRouter
 class IndexPage extends Component {
 
-  static async getInitialProps ({ req }) {
-    let group 
-    console.log(req.query)
-    if (req.query.group) {
-      group = group
-    } else {
-      group = groups[0].id
-    }
-
-    const { data } = await getGroupTopics(group)
-    return {
-      data,
-      groupId: group 
+  constructor () {
+    super()
+    this.state = {
+      spinning: false
     }
   }
 
-  handleCheckableTagChange = (value, id) => {
+  static async getInitialProps ({ query }) {
+    const group = query.group || groups[0].id
+    const { data } = await getGroupTopics(group)
+    return {
+      data,
+      groupId: group,
+      spinning: false
+    }
+  }
+
+  handleCheckableTagChange = async (value, id) => {
     const { router } = this.props
-    router.push(`?group=${id}`)
+    await this.setState({
+      spinning: true
+    })
+    setTimeout(() => this.setState({ spinning: false }), 1000)
+    router.push({
+      pathname: '/',
+      query: {
+        group: id
+      }
+    })
   }
 
   render () {
@@ -61,15 +99,17 @@ class IndexPage extends Component {
     return (
       <Container>
         <Head>
-          <title>豆瓣租房</title>
+          <title>{groups.find(g => g.id === groupId).name} | 租房信息</title>
         </Head>
-        <List
-          header={<ListHeader groupId={groupId} />}
-          style={{ background: '#fff', margin: '0 auto' }}
-          bordered
-          dataSource={data.topics}
-          renderItem={(item, index) => <ListItem item={item} index={index} />}
-        />
+        <Spin indicator={antIcon} tip="加载中..." spinning={this.state.spinning}>
+          <List
+            header={<ListHeader groupId={groupId} />}
+            style={{ background: '#fff', margin: '0 auto' }}
+            bordered
+            dataSource={data.topics}
+            renderItem={(item, index) => <ListItem item={item} index={index} />}
+          />
+        </Spin>
     
       </Container>
     )
