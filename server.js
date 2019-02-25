@@ -19,7 +19,8 @@ const SERVE_PORT = process.env.SERVE_PORT || 8001
 app.prepare().then(() => {
   const server = express()
 
-  server.get('/', (req, res) => renderAndCache(req, res, '/'))
+  // 如果需要页面缓存，这里取消注释即可
+  // server.get('/', (req, res) => renderAndCache(req, res, '/'))
 
   server.get('*', (req, res) => handle(req, res))
 
@@ -31,6 +32,7 @@ app.prepare().then(() => {
 
 const getCacheKey = req => `${req.url}`
 
+// 利用lru-cache进行页面缓存
 async function renderAndCache(req, res, pagePath, queryParams) {
   const key = getCacheKey(req)
   if (ssrCache.has(key)) {

@@ -19,6 +19,10 @@ export function getGroupInfo (id) {
   })
 }
 
+/**
+ * 获取小组讨论
+ * @param {string} id 
+ */
 export function getGroupTopics (id) {
   return instance.request({
     method: 'GET',
