@@ -66,8 +66,7 @@ class IndexPage extends Component {
     const { data } = await getGroupTopics(group)
     return {
       data,
-      groupId: group,
-      spinning: false
+      groupId: group
     }
   }
 
@@ -76,12 +75,14 @@ class IndexPage extends Component {
     await this.setState({
       spinning: true
     })
-    setTimeout(() => this.setState({ spinning: false }), 1000)
-    router.push({
+    await router.push({
       pathname: '/',
       query: {
         group: id
       }
+    })
+    this.setState({
+      spinning: false
     })
   }
 
