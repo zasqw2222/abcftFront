@@ -5,6 +5,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import { getGroupTopics } from '../services/douban'
 import { groups } from '../constants'
+import Header from '../components/Header'
 
 const CheckableTag = Tag.CheckableTag
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
@@ -12,6 +13,7 @@ const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 const Container = styled.div`
   width: 960px;
   margin: 40px auto;
+  padding-top: 30px;
 `
 
 const ListItemTitle = styled.div`
@@ -35,8 +37,6 @@ const ListItemContent = styled.div`
   width: 100%;
   margin-top: .2rem;
 `
-
-
 
 const ListItem = ({ item, index }) => {
   return <List.Item>
@@ -107,6 +107,9 @@ class IndexPage extends Component {
         <Head>
           <title>{groups.find(g => g.id === groupId).name} | 租房信息</title>
         </Head>
+
+        <Header />
+
         <Spin indicator={antIcon} tip="加载中..." spinning={this.state.spinning}>
           <List
             header={<ListHeader groupId={groupId} />}
