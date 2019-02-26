@@ -94,6 +94,7 @@ class IndexPage extends Component {
         <CheckableTag
           key={g.id}
           checked={groupId === g.id}
+          color="#2b68d7"
           onChange={(value) => this.handleCheckableTagChange(value, g.id)}
         >
           {g.name}
