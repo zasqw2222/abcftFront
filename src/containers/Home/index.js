@@ -12,7 +12,25 @@ const CheckableTag = Tag.CheckableTag
 const ListContainer = styled.div`
   width: 960px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 20px;
+  .title-link {
+    color: #000;
+    text-decoration: none;
+  }
+  .ant-tag-checkable-checked {
+    background-color: #072;
+  }
+
+  .ant-tag-checkable {
+    &:active {
+      background-color: #072;
+    }
+    &:not(.ant-tag-checkable-checked):hover {
+      color: #072
+    }
+  }
+
+  
 `
 
 @withRouter
@@ -58,7 +76,7 @@ class Home extends Component {
         <CheckableTag
           key={g.id}
           checked={this.state.groupId === g.id}
-          color="#2b68d7"
+          color="#072"
           onChange={(value) => this.handleCheckableTagChange(value, g.id)}
         >
           {g.name}
@@ -74,7 +92,9 @@ class Home extends Component {
             header={<ListHeader />}
             bordered
             dataSource={this.state.topics}
-            renderItem={item => (<List.Item>{item.title}</List.Item>)}
+            renderItem={item => (<List.Item>
+              <a className="title-link" href={item.alt} target="_blank" rel="noopener noreferrer">{item.title}</a>
+            </List.Item>)}
           />
         </Spin>
       </ListContainer>

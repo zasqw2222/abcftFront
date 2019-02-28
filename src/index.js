@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
+import { configure } from 'mobx'
+import { Provider } from 'mobx-react'
 import './index.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import globalConfigStore from './stores/globalConfigStore'
+
+const stores = {
+  globalConfigStore
+}
+
+// 方便调试
+window._APP_STATE_ = stores
+
+configure({
+  enforceActions: 'never'
+})
+
 ReactDOM.render(
   <BrowserRouter basename="/">
-    <App />
+    <Provider {...stores}>
+      <App />
+    </Provider>
   </BrowserRouter>, 
   document.getElementById('root')
 );
