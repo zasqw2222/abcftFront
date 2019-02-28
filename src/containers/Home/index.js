@@ -44,6 +44,10 @@ class Home extends Component {
         topics: data.topics,
         spinning: false
       })
+      this.props.history.push({
+        pathname: '/',
+        search: `?groupId=${id}`
+      })
     }
   }
 
