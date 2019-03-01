@@ -8,6 +8,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import globalConfigStore from './stores/globalConfigStore'
+// import i18n (needs to be bundled ;))
+import './i18n'
 
 const stores = {
   globalConfigStore

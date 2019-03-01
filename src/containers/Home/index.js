@@ -3,6 +3,8 @@ import { List, Tag, Spin } from 'antd'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import qs from 'query-string'
+import { inject, observer } from 'mobx-react'
+import { withTranslation } from 'react-i18next';
 
 import groups from './groups'
 import { getGroupTopics } from '../../services/douban'
@@ -13,27 +15,51 @@ const ListContainer = styled.div`
   width: 960px;
   margin: 0 auto;
   padding: 20px;
+  transition: .2s;
   .title-link {
-    color: #000;
+    color: ${props => props.theme === 'light' ? '#000' : '#b3b3b3'};;
     text-decoration: none;
   }
   .ant-tag-checkable-checked {
-    background-color: #072;
+    background-color: ${props => props.theme === 'light' ? '#072' : '#9c9c9c'};
+  }
+
+  .ant-list-bordered {
+    border: 1px solid ${props => props.theme === 'light' ? '#e8e8e8' : '#403f3f'};
+    .ant-list-item, .ant-list-header {
+      border-bottom: 1px solid ${props => props.theme === 'light' ? '#e8e8e8' : '#403f3f'}!important;
+    }
+  }
+
+  .post-list {
+    background-color: ${props => props.theme === 'light' ? '#fff' : '#1b1c23'};
+    .ant-list-split .ant-list-header {
+      border-bottom: 1px solid #403f3f
+    }
+  }
+
+  .ant-tag {
+    color: ${props => props.theme === 'light' ? 'rgba(0, 0, 0, 0.65)' : '#9c9c9c'};
+  }
+
+  .ant-tag-checkable-checked {
+    color: #fff;
   }
 
   .ant-tag-checkable {
     &:active {
-      background-color: #072;
+      background-color: ${props => props.theme === 'light' ? 'rgba(0, 0, 0, 0.65)' : '#9c9c9c'};
     }
     &:not(.ant-tag-checkable-checked):hover {
-      color: #072
+      color: ${props => props.theme === 'light' ? '#072' : '#9c9c9c'};
     }
   }
-
-  
 `
 
+@withTranslation()
 @withRouter
+@inject('globalConfigStore')
+@observer
 class Home extends Component {
 
   state = {
@@ -71,6 +97,9 @@ class Home extends Component {
 
   render () {
 
+    const { theme } = this.props.globalConfigStore
+    const { t } = this.props
+
     const ListHeader = () => {
       return groups.map(g => (
         <CheckableTag
@@ -79,16 +108,16 @@ class Home extends Component {
           color="#072"
           onChange={(value) => this.handleCheckableTagChange(value, g.id)}
         >
-          {g.name}
+          {t(g.name)}
         </CheckableTag>
       ))
     }
 
     return (
-      <ListContainer>
+      <ListContainer theme={theme}>
         <Spin spinning={this.state.spinning}>
           <List
-            style={{ background: '#fff' }}
+            className="post-list"
             header={<ListHeader />}
             bordered
             dataSource={this.state.topics}
