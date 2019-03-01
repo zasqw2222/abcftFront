@@ -15,7 +15,7 @@ const ListContainer = styled.div`
   width: 960px;
   margin: 0 auto;
   padding: 20px;
-  transition: .2s;
+  transition: .1s;
   .title-link {
     color: ${props => props.theme === 'light' ? '#000' : '#b3b3b3'};;
     text-decoration: none;
