@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { inject, observer } from 'mobx-react'
 import { Switch, Button } from 'antd'
 import { withTranslation } from 'react-i18next'
+const a = 1
 
 const HeaderContainer = styled.div`
   width: 100%;
