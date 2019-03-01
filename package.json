@@ -32,6 +32,7 @@
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
+    "http-proxy-middleware": "^0.19.1",
     "i18next": "^15.0.4",
     "i18next-browser-languagedetector": "^3.0.1",
     "i18next-xhr-backend": "^2.0.1",
