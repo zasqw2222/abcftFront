@@ -37,11 +37,15 @@ class Header extends Component {
 
   handleThemeChange = (checked) => {
     const { changeTheme } = this.props.globalConfigStore
+    let theme = ''
     if (checked) {
-      changeTheme('dark')
+      theme = 'dark'
     } else {
-      changeTheme('light')
+      theme = 'light'
     }
+
+    changeTheme(theme)
+    window.localStorage.setItem('theme', theme)
   }
 
   handleLocaleChange = () => {

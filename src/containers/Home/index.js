@@ -62,10 +62,15 @@ const ListContainer = styled.div`
 @observer
 class Home extends Component {
 
-  state = {
-    spinning: true,
-    groupId: 'shanghaizufang',
-    topics: []
+  constructor (props) {
+    super()
+    const query = qs.parse(props.location.search)
+    const groupId = query.groupId || 'shanghaizufang'
+    this.state = {
+      spinning: true,
+      groupId: groupId,
+      topics: []
+    }
   }
 
   async componentDidMount () {

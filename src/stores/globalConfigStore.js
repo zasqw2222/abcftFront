@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 
 class GlobalConfigStore {
-  @observable theme = 'light'
+  @observable theme = window.localStorage.getItem('theme') || 'light'
   @observable locale = window.localStorage.getItem('i18nextLng') || 'zh'
 
   @action changeTheme = theme => {
