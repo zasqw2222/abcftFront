@@ -86,8 +86,8 @@
     "not op_mini all"
   ],
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint src --max-warnings=0"
+    "src/*.{js,jsx}": [
+      "eslint src/ --max-warnings=0"
     ]
   },
   "husky": {
