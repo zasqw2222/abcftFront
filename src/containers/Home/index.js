@@ -10,7 +10,7 @@ import groups from './groups'
 import { getGroupTopics } from '../../services/douban'
 
 const CheckableTag = Tag.CheckableTag
-const a = 12
+const a = 123123
 
 const ListContainer = styled.div`
   width: 960px;
