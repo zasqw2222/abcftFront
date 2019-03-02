@@ -86,7 +86,7 @@
     "not op_mini all"
   ],
   "lint-staged": {
-    "src/*.{js,jsx}": [
+    "*.{js,jsx}": [
       "eslint --max-warnings=0"
     ]
   },
