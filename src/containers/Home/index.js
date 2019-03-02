@@ -19,6 +19,9 @@ const ListContainer = styled.div`
   .title-link {
     color: ${props => props.theme === 'light' ? '#000' : '#b3b3b3'};;
     text-decoration: none;
+    &:visited {
+      color: ${props => props.theme === 'light' ? 'rgba(0, 0, 0, 0.65)' : '#9c9c9c'}
+    }
   }
   .ant-tag-checkable-checked {
     background-color: ${props => props.theme === 'light' ? '#072' : '#9c9c9c'};
@@ -52,6 +55,19 @@ const ListContainer = styled.div`
     }
     &:not(.ant-tag-checkable-checked):hover {
       color: ${props => props.theme === 'light' ? '#072' : '#9c9c9c'};
+    }
+  }
+  .ant-list-item-content {
+    display: block;
+    width: 100%;
+    .post-content {
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 13px;
+      margin-top: 5px;
+      color: ${props => props.theme === 'light' ? 'rgba(0, 0, 0, 0.65)' : '#9c9c9c'};
     }
   }
 `
@@ -128,6 +144,7 @@ class Home extends Component {
             dataSource={this.state.topics}
             renderItem={item => (<List.Item>
               <a className="title-link" href={item.alt} target="_blank" rel="noopener noreferrer">{item.title}</a>
+              <p className="post-content">{item.content}</p>
             </List.Item>)}
           />
         </Spin>
