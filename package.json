@@ -87,7 +87,7 @@
   ],
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --max-warnings=0"
+      "eslint src --max-warnings=0"
     ]
   },
   "husky": {
